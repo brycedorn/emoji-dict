@@ -1,0 +1,30 @@
+{
+  "name": "emoji_dict",
+  "version": "1.0.0",
+  "description": "Writing words with emoji",
+  "main": "index.js",
+  "repository": "https://gitlab.com/brycedorn/emoji_dict",
+  "author": "Bryce Dorn <brycedorn@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "build": "cross-env NODE_ENV=production webpack",
+    "dev": "webpack-dev-server --content-base public"
+  },
+  "devDependencies": {
+    "cross-env": "^5.2.0",
+    "css-loader": "^2.1.1",
+    "mini-css-extract-plugin": "^0.6.0",
+    "raw-loader": "^2.0.0",
+    "serve": "^11.0.0",
+    "style-loader": "^0.23.1",
+    "svelte-loader": "2.13.3",
+    "webpack": "^4.30.0",
+    "webpack-cli": "^3.3.0",
+    "webpack-dev-server": "^3.3.1"
+  },
+  "dependencies": {
+    "clipboard-copy": "^3.0.0",
+    "spectre.css": "^0.5.8",
+    "svelte": "^3.2.0"
+  }
+}
