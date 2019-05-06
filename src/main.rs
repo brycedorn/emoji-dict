@@ -1,4 +1,3 @@
-// use std::collections::HashMap;
 use std::fs::File;
 use std::io::{Write, BufReader, BufRead, Error};
 
@@ -14,6 +13,7 @@ fn main() -> Result<(), Error> {
         "a",
         "b",
         "o",
+        "x",
         "m",
         "p",
         "i",
@@ -21,11 +21,13 @@ fn main() -> Result<(), Error> {
         "r"
     ];
     let sequence_emoji = [
+        "id",
         "ab",
         "cl",
         "sos",
         "atm",
         "wc",
+        "abc",
         "ng",
         "ok",
         "up",

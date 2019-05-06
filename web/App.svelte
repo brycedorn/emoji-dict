@@ -107,12 +107,12 @@
 				<p>A complete list of English words that can be written entirely with emoji. Because.</p>
 			</div>
 			<div class="form-group">
-				Sort:
+				Listing {words.length} words:
 				<label class="form-radio form-inline">
-					<input on:change={handleSortClick} type="radio" name="sort" value="default" checked><i class="form-icon"></i> Alphabetical
+					<input on:change={handleSortClick} type="radio" name="sort" value="default" checked><i class="form-icon"></i> alphabetically
 				</label>
 				<label class="form-radio form-inline">
-					<input on:change={handleSortClick} type="radio" name="sort" value="length"><i class="form-icon"></i> Length
+					<input on:change={handleSortClick} type="radio" name="sort" value="length"><i class="form-icon"></i> by length.
 				</label>
 				<br>
 				Filter:
