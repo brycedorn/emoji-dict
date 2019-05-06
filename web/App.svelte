@@ -157,7 +157,7 @@
 	</div>
 	<footer>
 		<p>
-			Written with 💜 by <a href="https://bryce.io">bryce</a> in <a href="https://svelte.dev/">Svelte</a>. View <a href="https://gitlab.com/brycedorn/emoji_dict">source</a>.
+			Written with 💜 by <a href="https://bryce.io">bryce</a> in <a href="https://svelte.dev/">Svelte</a>. View <a href="https://gitlab.com/brycedorn/emoji-dict">source</a>.
 		</p>
 	</footer>
 </div>
