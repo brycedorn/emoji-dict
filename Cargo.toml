@@ -1,5 +1,5 @@
 [package]
-name = "emoji_dict"
+name = "emoji-dict"
 version = "0.1.0"
 authors = ["Bryce Dorn <brycedorn@gmail.com>"]
 edition = "2018"
