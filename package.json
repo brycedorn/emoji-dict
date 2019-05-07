@@ -1,7 +1,7 @@
 {
   "name": "emoji-dict",
   "version": "1.0.0",
-  "description": "Writing words with emoji",
+  "description": "A complete list of English words that can be written entirely with emoji. Because.",
   "main": "index.js",
   "repository": "https://gitlab.com/brycedorn/emoji-dict",
   "author": "Bryce Dorn <brycedorn@gmail.com>",
@@ -13,6 +13,7 @@
   "devDependencies": {
     "cross-env": "^5.2.0",
     "css-loader": "^2.1.1",
+    "html-webpack-plugin": "^3.2.0",
     "mini-css-extract-plugin": "^0.6.0",
     "raw-loader": "^2.0.0",
     "serve": "^11.0.0",

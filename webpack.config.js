@@ -1,3 +1,4 @@
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 const mode = process.env.NODE_ENV || 'development';
@@ -40,6 +41,15 @@ module.exports = {
 				]
 			},
 			{
+        test: /\.(png)$/,
+        use: [
+          {
+            loader: 'file-loader',
+            options: {},
+          },
+        ],
+      },
+			{
         test: /\.txt$/i,
         use: 'raw-loader',
       }
@@ -49,7 +59,15 @@ module.exports = {
 	plugins: [
 		new MiniCssExtractPlugin({
 			filename: '[name].css'
-		})
+		}),
+		new HtmlWebpackPlugin({
+      title: 'Emoji Dictionary',
+      description: 'A complete list of English words that can be written entirely with emoji. Because.',
+      image: 'https://emoji-dict.bryce.io/ok.png',
+      url: 'https://emoji-dict.bryce.io',
+      template: 'web/index.html',
+      favicon: 'web/ok.png'
+    })
 	],
 	devtool: prod ? false: 'source-map'
 };
