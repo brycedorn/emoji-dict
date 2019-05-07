@@ -9,6 +9,9 @@
 	// Keep immutable version of words in memory
 	export let wordsImm = Array.from(words);
 
+	// Disable tooltips on mobile
+	export let isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+
 	function copyToClipboard(e) {
 		e.preventDefault();
 
@@ -72,6 +75,9 @@
 </script>
 
 <style>
+	h1 {
+		margin-top: 20px;
+	}
 	footer {
 		text-align: center;
 	}
@@ -109,10 +115,14 @@
 			<div class="form-group">
 				Listing {words.length} words:
 				<label class="form-radio form-inline">
-					<input on:change={handleSortClick} type="radio" name="sort" value="default" checked><i class="form-icon"></i> alphabetically
+					<input on:change={handleSortClick} type="radio" name="sort" value="default" checked>
+					<i class="form-icon"></i>
+					<span>alphabetically</span>
 				</label>
 				<label class="form-radio form-inline">
-					<input on:change={handleSortClick} type="radio" name="sort" value="length"><i class="form-icon"></i> by length.
+					<input on:change={handleSortClick} type="radio" name="sort" value="length">
+					<i class="form-icon"></i>
+					<span>by length.</span>
 				</label>
 				<br>
 				Filter:
@@ -143,11 +153,19 @@
 			{:else}
 				{#each words as word}
 					<li>
-						<div class="btn btn-lg tooltip" data-tooltip={copyTooltipText}>
-							<p class="h4" on:click={copyToClipboard}>
-								{word}
-							</p>
-						</div>
+						{#if isMobile}
+							<div class="btn btn-lg tooltip">
+								<p class="h4" on:click={copyToClipboard}>
+									{word}
+								</p>
+							</div>
+						{:else}
+							<div class="btn btn-lg tooltip" data-tooltip={copyTooltipText}>
+								<p class="h4" on:click={copyToClipboard}>
+									{word}
+								</p>
+							</div>
+						{/if}
 					</li>
 				{/each}
 			{/if}

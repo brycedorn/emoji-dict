@@ -4,7 +4,7 @@ import words from '../output.txt';
 
 import 'spectre.css';
 
-const emoji_hash = {
+const emojiHash = {
 	"id": "🆔",
 	"a": "🅰️",
 	"b": "🅱️",
@@ -35,21 +35,20 @@ const emoji_hash = {
 	"soon": "🔜"
 };
 
-const sorted_keys = Object.keys(emoji_hash).sort((a,b) => b.length - a.length);
+const sortedKeys = Object.keys(emojiHash).sort((a,b) => b.length - a.length);
+const regexKeys = sortedKeys.map(key => new RegExp(key, 'g'));
 
 const convertToEmoji = (word) => {
 	let emojified = String(word);
-	sorted_keys.forEach(key => emojified = emojified.replace(key, emoji_hash[key]));
+	regexKeys.forEach((key, i) => emojified = emojified.replace(key, emojiHash[sortedKeys[i]]));
 	return emojified;
 }
 
 function emojify(word) {
 	let emojified = String(word);
-	// do {
+	do {
 		emojified = convertToEmoji(emojified);
-	// } while (emojified.split('').some(e => e.length === 1));
-	emojified = convertToEmoji(emojified);
-	emojified = convertToEmoji(emojified);
+	} while (emojified.split('').some(e => /^[a-zA-Z]+$/.test(e)));
 	return emojified;
 };
 
@@ -57,7 +56,7 @@ const app = new App({
 	target: document.body,
 	props: {
 		copy,
-		filters: Object.values(emoji_hash),
+		filters: Object.values(emojiHash),
 		sort: 'default',
 		words: words.split('\n').map(emojify)
 	}
