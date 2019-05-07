@@ -13,7 +13,7 @@ module.exports = {
 	},
 	output: {
 		path: __dirname + '/public',
-		filename: '[name].js',
+		filename: prod ? '[name].[hash].js' : '[name].js',
 		chunkFilename: '[name].[id].js'
 	},
 	module: {
@@ -58,7 +58,7 @@ module.exports = {
 	mode,
 	plugins: [
 		new MiniCssExtractPlugin({
-			filename: '[name].css'
+			filename: prod ? '[name].[hash].css' : '[name].css'
 		}),
 		new HtmlWebpackPlugin({
       title: 'Emoji Dictionary',
