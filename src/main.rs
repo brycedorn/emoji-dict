@@ -48,12 +48,12 @@ fn main() -> Result<(), Error> {
 
         for sequence in &sequence_emoji {
             if remaining_letters.contains(sequence) {
-                remaining_letters = remaining_letters.replace(sequence, ""); // emoji_hash[sequence]
+                remaining_letters = remaining_letters.replace(sequence, "");
             }
         }
 
         for letter in &emoji {
-            remaining_letters = remaining_letters.replace(letter, ""); // emoji_hash[letter]
+            remaining_letters = remaining_letters.replace(letter, "");
         }
 
         if remaining_letters.len() == 0 {
