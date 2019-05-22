@@ -2,8 +2,8 @@
 	export let copy;
 	export let words;
 	export let sort;
-	export let filters;
-	export let selectedFilters = [];
+	export let emoji;
+	export let filteredEmoji = [];
 	export let copyTooltipText = "Copy";
 
 	// Keep immutable version of words in memory
@@ -13,63 +13,58 @@
 	export let isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
 
 	function copyToClipboard(e) {
-		e.preventDefault();
-
 		copyTooltipText = "Copied to clipboard!"
-
 		copy(e.target.innerText);
-
 		setTimeout(() => {
 			copyTooltipText = "Copy"
 		}, 1000)
 	}
 
-	function handleSortClick(e) {
+	function filterAndSort() {
 		let wordsMut = Array.from(wordsImm);
 
+		if (filteredEmoji.length > 0) {
+			filteredEmoji.forEach(emoji => {
+				wordsMut = wordsMut.filter(word => !word.includes(emoji));
+			});
+		}
+
+		if (sort === 'length') {
+			words = wordsMut.sort((a,b) => b.length - a.length);
+		} else {
+			words = wordsMut;
+		}
+	}
+
+	function handleSortClick(e) {
 		const { value } = e.target;
 
 		if (value !== sort) {
 			sort = value;
-
-			if (selectedFilters.length > 0) {
-				selectedFilters.forEach(filter => {
-					wordsMut = wordsMut.filter(w => !w.includes(filter));
-				});
-			}
-
-			if (sort === 'length') {
-				words = wordsMut.sort((a,b) => b.length - a.length);
-			} else {
-				words = wordsMut;
-			}
 		}
+
+		filterAndSort();
 	}
 
 	function handleFilterClick(e) {
-		let wordsMut = Array.from(wordsImm);
-
 		const { checked, value } = e.target;
 
 		if (checked) {
-			selectedFilters.splice(selectedFilters.indexOf(value), 1);
+			filteredEmoji.splice(filteredEmoji.indexOf(value), 1);
 		} else {
-			selectedFilters.push(value);
+			filteredEmoji.push(value);
 		}
 
-		selectedFilters.forEach(filter => {
-			wordsMut = wordsMut.filter(w => !w.includes(filter));
-		});
-
-		if (sort === 'length') {
-			wordsMut = wordsMut.sort((a,b) => b.length - a.length);
-		}
-
-		words = wordsMut;
+		filterAndSort();
 	}
 
-	function resetFilters(e) {
-		selectedFilters = [];
+	function allEmoji() {
+		filteredEmoji = emoji;
+		filterAndSort();
+	}
+
+	function resetFilters() {
+		filteredEmoji = [];
 		words = Array.from(wordsImm);
 	}
 </script>
@@ -80,6 +75,9 @@
 	}
 	footer {
 		text-align: center;
+	}
+	a {
+		cursor: pointer;
 	}
 	ul {
 		display: flex;
@@ -126,11 +124,13 @@
 				</label>
 				<br>
 				Filter:
-				{#each filters as filter}
+				<a on:click={resetFilters}>All</a>
+				<a on:click={allEmoji}>None</a>
+				{#each emoji as moji}
 					<label class="form-checkbox form-inline">
-						<input on:change={handleFilterClick} type="checkbox" checked value={filter}>
+						<input on:change={handleFilterClick} type="checkbox" checked={!filteredEmoji.includes(moji)} value={moji}>
 						<i class="form-icon"></i>
-						<span>{filter}</span>
+						<span>{moji}</span>
 					</label>
 				{/each}
 			</div>
@@ -144,8 +144,8 @@
 					<div class="empty-icon">
 						<i class="icon icon-people"></i>
 					</div>
-					<p class="empty-title h5">No words match the set filters.</p>
-					<p class="empty-subtitle">Get rid of some filters, ya dingus!</p>
+					<p class="empty-title h5">No words match the set emoji.</p>
+					<p class="empty-subtitle">Enable some more, ya dingus!</p>
 					<div class="empty-action">
 						<button class="btn btn-primary" on:click={resetFilters}>Reset</button>
 					</div>

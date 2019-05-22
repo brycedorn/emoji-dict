@@ -56,7 +56,7 @@ const app = new App({
 	target: document.body,
 	props: {
 		copy,
-		filters: Object.values(emojiHash),
+		emoji: Object.values(emojiHash),
 		sort: 'default',
 		words: words.split('\n').map(emojify)
 	}
