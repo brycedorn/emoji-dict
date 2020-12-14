@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "A complete list of English words that can be written entirely with emoji. Because.",
   "main": "index.js",
-  "repository": "https://gitlab.com/brycedorn/emoji-dict",
+  "repository": "https://github.com/brycedorn/emoji-dict",
   "author": "Bryce Dorn <brycedorn@gmail.com>",
   "license": "MIT",
   "scripts": {

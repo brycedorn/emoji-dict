@@ -13,6 +13,7 @@ module.exports = {
 	},
 	output: {
 		path: __dirname + '/public',
+		publicPath: prod ? 'https://bryce.io/emoji-dict/' : '/',
 		filename: prod ? '[name].[hash].js' : '[name].js',
 		chunkFilename: '[name].[id].js'
 	},
