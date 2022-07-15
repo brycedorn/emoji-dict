@@ -26,6 +26,6 @@
   "dependencies": {
     "clipboard-copy": "^3.0.0",
     "spectre.css": "^0.5.8",
-    "svelte": "^3.2.0"
+    "svelte": "^3.49.0"
   }
 }
